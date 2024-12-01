@@ -25,21 +25,40 @@ for i in range(size):
     placeholder += "_"
 
 print(placeholder)
+game_over = False
+prev_guessed_letter = []
 
-user_input = input("Guess a letter: ").lower()
-# print(user_input)
+while not game_over:
 
-
-display = ""
-
-
-for letter in random_name :
-    if letter == user_input:
-        display += letter
-
-    else:
-        display+= "_"
-
-print(display)
+    user_input = input("Guess a letter: ").lower()
+    # print(user_input)
 
 
+    display = ""
+
+
+    for letter in random_name :
+        if letter == user_input:
+            display += letter
+            prev_guessed_letter.append(user_input)
+        elif letter in prev_guessed_letter:
+            display += letter
+        else:
+            display+= "_"
+
+    print(display)
+
+    if "_" not in display:
+        game_over = True
+        print("You Win!!")
+
+
+# correct_letter = ["a","b","d"]
+# word = "abcd"
+# display = ""
+#
+# for letter in word:
+#     if letter in correct_letter:
+#         display += letter
+#
+# print(display)
