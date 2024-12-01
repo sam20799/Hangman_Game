@@ -1,17 +1,99 @@
 import random
 
-# print("Hello")
-# total_char = len("Hello")
-# print(total_char)
-#
-# def function():
-#     print("SAM")
-#     print(len("sam"))
-#
-#
-# for i in range(6):
-#     print(i)
+stages = ['''
+  +----+
+       |
+       |
+       |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+       |
+       |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+       |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /     |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /|    |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /|\   |
+       |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /|\   |
+  |    |
+       |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /|\   |
+  |    |
+ /     |
+========
+ 
+''',
+'''
+  +----+
+  |    |
+  O    |
+ /|\   |
+  |    |
+ / \   |
+========
+ 
+'''
+]
 
+# reversed items cuz we'll print items from backwards
+stages.reverse()
 
 names = ["sam","dam","obam","sahzam"]
 
@@ -27,6 +109,7 @@ for i in range(size):
 print(placeholder)
 game_over = False
 prev_guessed_letter = []
+live = 8
 
 while not game_over:
 
@@ -48,10 +131,18 @@ while not game_over:
 
     print(display)
 
+    if user_input not in random_name:
+        live -= 1
+        if live == 0:
+            game_over = True
+            print("You Loose!")
+
+
     if "_" not in display:
         game_over = True
         print("You Win!!")
 
+    print(stages[live])
 
 # correct_letter = ["a","b","d"]
 # word = "abcd"
