@@ -1,103 +1,14 @@
 import random
+from hangman_words import word_list
+from hangman_art import stages,logo
 
-stages = ['''
-  +----+
-       |
-       |
-       |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-       |
-       |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
-       |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /     |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /|    |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /|\   |
-       |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /|\   |
-  |    |
-       |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /|\   |
-  |    |
- /     |
-========
- 
-''',
-'''
-  +----+
-  |    |
-  O    |
- /|\   |
-  |    |
- / \   |
-========
- 
-'''
-]
 
 # reversed items cuz we'll print items from backwards
 stages.reverse()
+print("MADE BY SAM")
+print(logo)
 
-names = ["sam","dam","obam","sahzam"]
-
-random_name = (random.choice(names))
+random_name = (random.choice(word_list))
 print(random_name)
 
 size = len(random_name)
@@ -114,7 +25,10 @@ live = 8
 while not game_over:
 
     user_input = input("Guess a letter: ").lower()
-    # print(user_input)
+    if user_input in prev_guessed_letter:
+        print(f"You have already guessed this letter '{user_input}'")
+
+
 
 
     display = ""
@@ -133,14 +47,18 @@ while not game_over:
 
     if user_input not in random_name:
         live -= 1
+        print(f"******** You have {live} lives left ********")
+        print(f"You have guessed the wrong letter '{user_input}'")
+
         if live == 0:
             game_over = True
-            print("You Loose!")
+            print("******** You Loose! ********")
+            print(f"Correct word was '{random_name}'")
 
 
     if "_" not in display:
         game_over = True
-        print("You Win!!")
+        print("******** You Win!! ********")
 
     print(stages[live])
 
